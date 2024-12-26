@@ -216,10 +216,15 @@ while failedAttempts <= maxFailedAttempts
             %% 贪婪搜索
             flag = 1; 
             RRTreeA = [RRTreeA;newPoint I];%%先储存起来
-        line([RRTreeA(end,2);RRTreeA(RRTreeA(end,4),2)],[RRTreeA(end,1);RRTreeA(RRTreeA(end,4),1)],'color','#789440','linewidth',0.5,'linestyle','-','marker','.','markersize',10);
+            line([RRTreeA(end,2);RRTreeA(RRTreeA(end,4),2)],[RRTreeA(end,1);RRTreeA(RRTreeA(end,4),1)],'color','#789440','linewidth',0.5,'linestyle','-','marker','.','markersize',10);
          while flag == 1
           
             Temp = newPoint;
+            r0(1) = sample(1)-Temp(1);  
+            r0(2) = sample(2)-Temp(2);
+            r0_a = norm(r0, 2);
+            r0 = r0/r0_a;
+            dir = 1*r0;
             newPoint(1:2) = double(int32(Temp(1:2) + stepsize * dir));
             % if(newPoint(3)-sample(3)>0.03)
                 newPoint(3)= zstepsize*(sample(3)-Temp(3))+Temp(3);

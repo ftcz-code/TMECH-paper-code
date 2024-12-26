@@ -83,6 +83,7 @@ while failedAttempts <= maxFailedAttempts
          while flag == 1
           
             Temp = newPoint;
+            theta = atan2((sample(1)-Temp(1)),(sample(2)-Temp(2)));
             newPoint(1:2) = double(int32(Temp(1:2) + stepsize * [sin(theta)  cos(theta)]));
             % if(newPoint(3)-sample(3)>0.03)
                 newPoint(3)= zstepsize*(sample(3)-Temp(3))+Temp(3);
